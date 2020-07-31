@@ -15,9 +15,8 @@ HTTP server exposing the DataBroker API in a language agnostic way.
 * Documentation: (COMING SOON!) https://bluesky.github.io/databroker-server.
 
 To get up and running just clone the repository, install the requirements and
-start the server:
+start the server::
 
-.. code-block:: console
     $ pip install -r requirements.txt
     $ uvicorn databroker_server.main:app --reload
 
