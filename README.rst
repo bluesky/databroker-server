@@ -17,8 +17,9 @@ HTTP server exposing the DataBroker API in a language agnostic way.
 To get up and running just clone the repository, install the requirements and
 start the server:
 
-  pip install -r requirements.txt
-  uvicorn databroker_server.main:app --reload
+.. code-block:: console
+    $ pip install -r requirements.txt
+    $ uvicorn databroker_server.main:app --reload
 
 Features
 --------
