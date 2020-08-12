@@ -5,7 +5,7 @@ router = APIRouter()
 
 
 @router.get("/")
-async def read_catalogs():
+async def list_catalogs():
     """List the catalogs the server has access to."""
     catalogs = []
     for item in databroker.catalogs():
