@@ -1,6 +1,16 @@
-from fastapi import Depends, FastAPI, Header, HTTPException
+import logging
 
-from .routers import catalogs, users
+from fastapi import Depends, FastAPI, Header, HTTPException
+from fastapi.logger import logger
+
+from .routers import runs, users
+
+#gunicorn_logger = logging.getLogger('gunicorn.error')
+#logger.handlers = gunicorn_logger.handlers
+#if __name__ != "main":
+#    logger.setLevel(gunicorn_logger.level)
+#else:
+#    logger.setLevel(logging.DEBUG)
 
 app = FastAPI(
     title="DataBroker HTTP Server",
@@ -16,9 +26,9 @@ async def get_token_header(x_token: str = Header(...)):
 
 app.include_router(users.router)
 app.include_router(
-    catalogs.router,
-    prefix="/catalogs",
-    tags=["catalogs"],
+    runs.router,
+    prefix="/runs",
+    tags=["runs"],
     responses={404: {"description": "Not found"}},
 )
 # Example blocking a route based upon a dependency.
