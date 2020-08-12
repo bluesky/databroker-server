@@ -26,14 +26,19 @@ async def read_catalog(catalog_id: str):
 
 @router.get("/{catalog_id}/{uid}")
 async def read_run(catalog_id: str, uid: str):
-    """List the streams witin a uid."""
-    streams = []
-    stream_list = databroker.streams(catalog_id, uid)
-    if stream_list == None:
+    """Summarize the run for the given uid."""
+    summary = databroker.run_summary(catalog_id, uid)
+    if summary == None:
         raise HTTPException(status_code=404, detail="Not found")
-    for stream in stream_list:
-        streams.append({"name": stream})
-    return streams
+    return summary
+
+@router.get("/{catalog_id}/{uid}/{stream}")
+async def read_stream(catalog_id: str, uid: str, stream: str):
+    """Summarize the stream within the given uid."""
+    summary = databroker.stream_summary(catalog_id, uid, stream)
+    if summary == None:
+        raise HTTPException(status_code=404, detail="Not found")
+    return summary
 
 @router.put(
     "/{id}",
