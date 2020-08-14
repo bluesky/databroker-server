@@ -51,12 +51,11 @@ def stream_summary(catalog_id: str, uid: str, stream: str):
     try:
         s = run[stream]
     except KeyError:
-        return { "error": stream + " not found"}
         return None
 
     summary = {}
     summary['uid'] = uid
     summary['name'] = stream
     summary['metadata'] = s.metadata
-    summary['keys'] = list(s.read().keys())
+    summary['data_keys'] = list(s.metadata['descriptors'][0]['data_keys'])
     return summary
