@@ -3,7 +3,7 @@ import logging
 from fastapi import Depends, FastAPI, Header, HTTPException
 from fastapi.logger import logger
 
-from .routers import runs, users
+from .routers import runs, users, previews
 
 #gunicorn_logger = logging.getLogger('gunicorn.error')
 #logger.handlers = gunicorn_logger.handlers
@@ -29,6 +29,12 @@ app.include_router(
     runs.router,
     prefix="/runs",
     tags=["runs"],
+    responses={404: {"description": "Not found"}},
+)
+app.include_router(
+    previews.router,
+    prefix="/previews",
+    tags=["previews"],
     responses={404: {"description": "Not found"}},
 )
 # Example blocking a route based upon a dependency.
