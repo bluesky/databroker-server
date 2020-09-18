@@ -24,6 +24,7 @@ async def read_catalog(catalog_name: str):
         runs.append({"uid": run})
     return runs
 
+
 @router.get("/{catalog_name}/{run_uid}")
 async def read_run(catalog_name: str, run_uid: str):
     """Summarize the run for the given uid."""
@@ -31,6 +32,7 @@ async def read_run(catalog_name: str, run_uid: str):
     if summary == None:
         raise HTTPException(status_code=404, detail="Not found")
     return summary
+
 
 @router.get("/{catalog_name}/{run_uid}/{stream}")
 async def read_stream(catalog_name: str, run_uid: str, stream: str):
@@ -40,10 +42,9 @@ async def read_stream(catalog_name: str, run_uid: str, stream: str):
         raise HTTPException(status_code=404, detail="Not found")
     return summary
 
+
 @router.put(
-    "/{id}",
-    tags=["custom"],
-    responses={403: {"description": "Operation forbidden"}},
+    "/{id}", tags=["custom"], responses={403: {"description": "Operation forbidden"}},
 )
 async def update_catalog(id: str):
     if id != "test":

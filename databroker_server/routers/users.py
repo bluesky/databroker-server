@@ -4,6 +4,7 @@ router = APIRouter()
 
 # This is a simple placeholder for getting user names etc, not functional.
 
+
 @router.get("/users/", tags=["users"])
 async def read_users():
     return [{"username": "foo"}, {"username": "bar"}]

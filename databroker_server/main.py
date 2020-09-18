@@ -5,11 +5,11 @@ from fastapi.logger import logger
 
 from .routers import runs, users, previews
 
-#gunicorn_logger = logging.getLogger('gunicorn.error')
-#logger.handlers = gunicorn_logger.handlers
-#if __name__ != "main":
+# gunicorn_logger = logging.getLogger('gunicorn.error')
+# logger.handlers = gunicorn_logger.handlers
+# if __name__ != "main":
 #    logger.setLevel(gunicorn_logger.level)
-#else:
+# else:
 #    logger.setLevel(logging.DEBUG)
 
 app = FastAPI(
@@ -38,10 +38,10 @@ app.include_router(
     responses={404: {"description": "Not found"}},
 )
 # Example blocking a route based upon a dependency.
-#app.include_router(
+# app.include_router(
 #    catalogs.router,
 #    prefix="/sekrit-catalogs",
 #    tags=["catalogs", "sekrit"],
 #    dependencies=[Depends(get_token_header)],
 #    responses={404: {"description": "Not found"}},
-#)
+# )

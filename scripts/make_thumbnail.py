@@ -5,9 +5,9 @@ from imageio import imsave
 def generate_thumbnail(run, path_template):
     """
     Write one thumbnail image to represent a Run if any image-like data can be found.
-    
+
     Logs details to the stderr.
-    
+
     Parameters
     ----------
     run: BlueskyRun
@@ -15,23 +15,23 @@ def generate_thumbnail(run, path_template):
         May include templates like {start[plan_name]} or {stop[exit_status]}
         which will be extracted from the documents. If it does not end in ".png", then
         ".png" will be appended to the path.
-    
+
     Returns
     -------
     path: str or None
         The (possibly templated) path or, if no image data was found, None
-        
+
     Examples
     --------
     Write a PNG to a simple path.
-    
-    >>> generate_thumbnail(catalog[-1], "/tmp/test_thumbnail.png") 
+
+    >>> generate_thumbnail(catalog[-1], "/tmp/test_thumbnail.png")
     Wrote 'img' from Run a907fe84 to /tmp/test_thumbnail.png
     '/tmp/test_thumbnail.png'
 
     Write a PNG to a path created by templating metadata from the Run.
-    
-    >>> generate_thumbnail(catalog[-1], "/tmp/test_thumbnail_{start[uid]:.8}_{start[plan_name]}.png")                                                                                  
+
+    >>> generate_thumbnail(catalog[-1], "/tmp/test_thumbnail_{start[uid]:.8}_{start[plan_name]}.png")
     Wrote 'img' from Run a907fe84 /tmp/test_thumbnail_a907fe84_count.png
     '/tmp/test_thumbnail_a907fe84_count.png'
 
@@ -39,9 +39,9 @@ def generate_thumbnail(run, path_template):
     if not path_template.endswith(".png"):
         path_template += ".png"
     path = path_template.format(**run.metadata)
-    uid = run.metadata['start']['uid']
-    if 'primary' in run:
-        stream_name = 'primary'
+    uid = run.metadata["start"]["uid"]
+    if "primary" in run:
+        stream_name = "primary"
     elif list(run):
         # Just grab the first stream.
         stream_name = list(run)[0]
