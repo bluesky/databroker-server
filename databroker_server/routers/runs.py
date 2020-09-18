@@ -18,7 +18,7 @@ async def read_catalog(catalog_name: str):
     """List the runs within the supplied catalog."""
     runs = []
     run_list = databroker.runs(catalog_name)
-    if run_list == None:
+    if run_list is None:
         raise HTTPException(status_code=404, detail="Not found")
     for run in run_list:
         runs.append({"uid": run})
@@ -29,7 +29,7 @@ async def read_catalog(catalog_name: str):
 async def read_run(catalog_name: str, run_uid: str):
     """Summarize the run for the given uid."""
     summary = databroker.run_summary(catalog_name, run_uid)
-    if summary == None:
+    if summary is None:
         raise HTTPException(status_code=404, detail="Not found")
     return summary
 
@@ -38,7 +38,7 @@ async def read_run(catalog_name: str, run_uid: str):
 async def read_stream(catalog_name: str, run_uid: str, stream: str):
     """Summarize the stream within the given uid."""
     summary = databroker.stream_summary(catalog_name, run_uid, stream)
-    if summary == None:
+    if summary is None:
         raise HTTPException(status_code=404, detail="Not found")
     return summary
 
