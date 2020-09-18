@@ -1,7 +1,4 @@
-import logging
-
-from fastapi import Depends, FastAPI, Header, HTTPException
-from fastapi.logger import logger
+from fastapi import FastAPI, Header, HTTPException
 
 from .routers import runs, users, previews
 
