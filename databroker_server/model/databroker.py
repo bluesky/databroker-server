@@ -33,10 +33,10 @@ def run_summary(catalog_id: str, uid: str):
 
     run = current[uid]
     summary = {}
-    summary['uid'] = uid
-    summary['start'] = run.metadata['start']
-    summary['stop'] = run.metadata['stop']
-    summary['streams'] = list(run)
+    summary["uid"] = uid
+    summary["start"] = run.metadata["start"]
+    summary["stop"] = run.metadata["stop"]
+    summary["streams"] = list(run)
     return summary
 
 
@@ -54,8 +54,8 @@ def stream_summary(catalog_id: str, uid: str, stream: str):
         return None
 
     summary = {}
-    summary['uid'] = uid
-    summary['name'] = stream
-    summary['metadata'] = s.metadata
-    summary['data_keys'] = list(s.metadata['descriptors'][0]['data_keys'])
+    summary["uid"] = uid
+    summary["name"] = stream
+    summary["metadata"] = s.metadata
+    summary["data_keys"] = list(s.metadata["descriptors"][0]["data_keys"])
     return summary
