@@ -22,6 +22,27 @@ def runs(name: str):
     return list(current)
 
 
+def rich_runs(name: str):
+    """ Get a rich list of runs for a catalog."""
+    try:
+        current = catalog[name]
+    except KeyError:
+        return None
+    if not _has_runs(current):
+        return None
+
+    run_list = []
+    for uid in current:
+        run_data = {}
+        run_data["uid"] = uid
+        run = current[uid]
+        run_data["scan_id"] = run.metadata["start"]["scan_id"]
+        run_data["time"] = run.metadata["start"]["time"]
+        run_list.append(run_data)
+
+    return run_list
+
+
 def run_summary(catalog_id: str, uid: str):
     """Generate a summary of the selected run."""
     try:

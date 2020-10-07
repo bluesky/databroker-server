@@ -17,12 +17,11 @@ async def list_catalogs():
 async def read_catalog(catalog_name: str):
     """List the runs within the supplied catalog."""
     runs = []
-    run_list = databroker.runs(catalog_name)
+    run_list = databroker.rich_runs(catalog_name)
     if run_list is None:
         raise HTTPException(status_code=404, detail="Not found")
-    for run in run_list:
-        runs.append({"uid": run})
-    return runs
+
+    return run_list
 
 
 @router.get("/{catalog_name}/{run_uid}")
