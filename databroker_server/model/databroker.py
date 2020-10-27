@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from databroker import catalog
 
 
@@ -37,7 +39,9 @@ def rich_runs(name: str):
         run_data["uid"] = uid
         run = current[uid]
         run_data["scan_id"] = run.metadata["start"]["scan_id"]
-        run_data["time"] = run.metadata["start"]["time"]
+        run_data["timestamp"] = run.metadata["start"]["time"]
+        run_data["date_time"] = datetime.fromtimestamp(run.metadata["start"]["time"])
+        run_data["plan_name"] = run.metadata["start"]["plan_name"]
         run_list.append(run_data)
 
     return run_list
